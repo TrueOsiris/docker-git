@@ -3,11 +3,12 @@ if [ -z "$1" ];
 then
 	comment="no comment"
 else
-	if [ $1 == "--help" ]; then
+	if [ $1 == "--help" -o $1 == "-h" ]; then
 		echo "gitpush usage:"
 		echo "gitpush [comment] [build]"
 		echo "  default comment = \"no comment\""
 		echo "  default build = \"main\""
+		exit 0
 	else
 		comment="$1"
 	fi
