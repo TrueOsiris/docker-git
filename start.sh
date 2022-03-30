@@ -20,20 +20,21 @@ if [ -z ${gituser} ]; then
 	echo "exiting"
 	exit 0
 else
-	echo "gituser = $gituser"
+	echo "gituser is set."
 fi
 if [ -z ${gitmail} ]; then
         echo "Container variable $gitmail_varname not set."
         echo "exiting"
         exit 0
 else
-        echo "gitmail = $gitmail"
+        echo "gitmail is set."
 fi
 
 /usr/bin/git config --system color.ui true
 /usr/bin/git config --system user.name "$gituser"
 /usr/bin/git config --system user.email "$gitmail"
 /usr/bin/dircolors -p > ~/.dircolors
+echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd' >> /etc/bash.bashrc
 /usr/bin/cp /root/.* /mnt/github/ 2>/dev/null
 /usr/bin/ln -s /gitpush /usr/bin/gitpush
 /usr/bin/ln -s /dockerpush /usr/bin/dockerpush
@@ -42,7 +43,7 @@ echo 'n' | /usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f /mnt/github/.ss
 echo ' '
 /usr/bin/cat /mnt/github/.ssh/id_ed25519.pub
 echo ' '
-ssh -oStrictHostKeyChecking=no -T git@github.com 2>&1
+ssh -oStrictHostKeyChecking=no -T git@github.com 2>/dev/null 1>/dev/null
 /usr/bin/git config --global url.ssh://git@github.com/.insteadOf https://github.com/
 echo $'/var/log/cron.log {\n  rotate 7\n  daily\n  missingok\n  notifempty\n  create\n}' > /etc/logrotate.d/git-cron
 echo "$date Running start.sh" >> /var/log/cron.log

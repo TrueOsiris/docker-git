@@ -1,5 +1,5 @@
 # docker-git<br>
-Minimal Ubuntu 20.04 container with git functionalities, with some simplified commands
+Minimal Ubuntu 20.04 sandbox container with git functionalities, with some simplified commands
 
 ![Trueosiris Rules](https://img.shields.io/badge/trueosiris-rules-f08060) 
 [![Docker Pulls](https://badgen.net/docker/pulls/trueosiris/git?icon=docker&label=pulls)](https://hub.docker.com/r/trueosiris/git/) 
