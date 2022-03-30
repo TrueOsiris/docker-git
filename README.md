@@ -31,4 +31,4 @@ dockerhub repo: https://hub.docker.com/repository/docker/trueosiris/git <br>
 
 ### log
 
-Python script log arrives in /var/log/git.log.<br>
+log arrives in /var/log/git.log.<br>
