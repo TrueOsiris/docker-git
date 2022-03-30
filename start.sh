@@ -30,9 +30,11 @@ else
         echo "gitmail = $gitmail"
 fi
 
-/usr/bin/git config --global color.ui true
-/usr/bin/git config --global user.name "$gituser"
-/usr/bin/git config --global user.email "$gitmail"
+/usr/bin/git config --system color.ui true
+/usr/bin/git config --system user.name "$gituser"
+/usr/bin/git config --system user.email "$gitmail"
+
+/usr/bin/cp /root/.* /mnt/github/ 2>/dev/null
 echo $'/var/log/cron.log {\n  rotate 7\n  daily\n  missingok\n  notifempty\n  create\n}' > /etc/logrotate.d/git-cron
 echo "$date Running start.sh" >> /var/log/cron.log
 echo "30 5 * * * /usr/sbin/logrotate /etc/logrotate.d/git-cron" >> /etc/cron.d/git-cron
