@@ -10,6 +10,31 @@ Minimal Ubuntu 20.04 container with git functionalities, with some simplified co
 ![Github issues](https://img.shields.io/github/issues/TrueOsiris/docker-git)
 ![Github last-commit](https://img.shields.io/github/last-commit/TrueOsiris/docker-git)
 
+### setup
+Run the docker container and the generated ssh key will be in the docker log.
+    
+    docker logs -f git
+
+add this to your github.com account via Settings -> SSH and GPG keys
+now you can connect to the container
+
+    docker exec -it git /bin/bash
+
+and use commands gitpush & dockerpush
+e.g.
+
+    git clone https://github.com/yourgituser/yourgitrepo
+    cd yourgitrepo
+    gitpush "adapted the README.md" main
+
+create your docker repo and build + push
+
+    dockerpush yourdockerrepo
+
+or 
+
+    dockerpush yourdockerrepo:1.0
+
 ### environment variables
 
 | Environment Variable | Key | Description |
@@ -17,7 +42,6 @@ Minimal Ubuntu 20.04 container with git functionalities, with some simplified co
 | TZ | Europe/Brussels | timezone for ntpdate |
 | GITUSER | your_github_username | your github username / repository name |
 | GITMAIL | your_github_email | your github email / signin account |
-| GITPASS | your_github_pass | your github password |
 | DOCKERUSER | your_docker_account | your docker user account |
 | DOCKERPASS | your_docker_password | your docker password |
 
