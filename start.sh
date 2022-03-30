@@ -41,6 +41,8 @@ fi
 echo 'n' | /usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f /mnt/github/.ssh/id_ed25519 2>/dev/null 1>/dev/null
 echo ' '
 /usr/bin/cat /mnt/github/.ssh/id_ed25519.pub
+echo ' '
+ssh -oStrictHostKeyChecking=no -T git@github.com 2>&1
 echo $'/var/log/cron.log {\n  rotate 7\n  daily\n  missingok\n  notifempty\n  create\n}' > /etc/logrotate.d/git-cron
 echo "$date Running start.sh" >> /var/log/cron.log
 echo "30 5 * * * /usr/sbin/logrotate /etc/logrotate.d/git-cron" >> /etc/cron.d/git-cron
