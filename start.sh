@@ -33,7 +33,7 @@ fi
 /usr/bin/git config --system color.ui true
 /usr/bin/git config --system user.name "$gituser"
 /usr/bin/git config --system user.email "$gitmail"
-
+/usr/bin/dircolors -p > ~/.dircolors
 /usr/bin/cp /root/.* /mnt/github/ 2>/dev/null
 echo $'/var/log/cron.log {\n  rotate 7\n  daily\n  missingok\n  notifempty\n  create\n}' > /etc/logrotate.d/git-cron
 echo "$date Running start.sh" >> /var/log/cron.log
