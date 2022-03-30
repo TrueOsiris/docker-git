@@ -17,6 +17,6 @@ ENV TZ=Europe/Brussels
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
-
+WORKDIR ["/mnt/github"]
 VOLUME ["/mnt/github"]
 CMD ["/start.sh"]
