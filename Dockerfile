@@ -17,6 +17,10 @@ ENV TZ=Europe/Brussels
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
+COPY gitpush /gitpush
+RUN chmod +x /gitpush
+COPY dockerpush /dockerpush
+RUN chmod +x /dockerpush
 WORKDIR /mnt/github
 VOLUME ["/mnt/github"]
 CMD ["/start.sh"]

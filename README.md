@@ -15,8 +15,11 @@ Minimal Ubuntu 20.04 container with git functionalities, with some simplified co
 | Environment Variable | Key | Description |
 | -------------------- | ---------------------------- | ------------------------------------------------------------------------------- |
 | TZ | Europe/Brussels | timezone for ntpdate |
-| GITUSER | your_github_username | your github username |
+| GITUSER | your_github_username | your github username / repository name |
+| GITMAIL | your_github_email | your github email / signin account |
 | GITPASS | your_github_pass | your github password |
+| DOCKERUSER | your_docker_account | your docker user account |
+| DOCKERPASS | your_docker_password | your docker password |
 
 ### volumes
 

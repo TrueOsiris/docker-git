@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ -z "$1" ];
+then
+	comment="no comment"
+else
+	comment="$1"
+fi
+if [ -z "$2" ];
+then 
+	build="main"
+else
+	build="$2"
+	git checkout -b $2 2>/dev/null
+fi
+git checkout $build
+git status
+git add * 2>/dev/null
+git commit -a -m "$comment"
+git push -u origin $build
