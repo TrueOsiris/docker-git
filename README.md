@@ -15,6 +15,8 @@ Godaddypy ddns for the cheap in a docker container
 | Environment Variable | Key | Description |
 | -------------------- | ---------------------------- | ------------------------------------------------------------------------------- |
 | TZ | Europe/Brussels | timezone for ntpdate |
+| GITUSER | your_github_username | your github username |
+| GITPASS | your_github_pass | your github password |
 
 ### volumes
 
