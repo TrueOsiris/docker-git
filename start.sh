@@ -37,6 +37,7 @@ fi
 /usr/bin/cp /root/.* /mnt/github/ 2>/dev/null
 /usr/bin/ln -s /gitpush /usr/bin/gitpush
 /usr/bin/ln -s /dockerpush /usr/bin/dockerpush
+/usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f /mnt/github/.ssh/id_ed25519
 echo $'/var/log/cron.log {\n  rotate 7\n  daily\n  missingok\n  notifempty\n  create\n}' > /etc/logrotate.d/git-cron
 echo "$date Running start.sh" >> /var/log/cron.log
 echo "30 5 * * * /usr/sbin/logrotate /etc/logrotate.d/git-cron" >> /etc/cron.d/git-cron
