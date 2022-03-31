@@ -20,6 +20,9 @@ else
 	build="$2"
 	git checkout -b $2 2>/dev/null
 fi
+#git remote set-url origin git+ssh://git@github.com/trueosiris/docker-nginx-reverse-proxy.git
+currentdir=${PWD##*/}
+echo $currentdir
 git checkout $build
 git status
 git add * 2>/dev/null
