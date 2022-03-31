@@ -24,6 +24,7 @@ fi
 currentdir=${PWD##*/}
 echo "repository = $currentdir"
 git remote set-url origin git+ssh://git@github.com/$GITUSER/$currentdir.git
+git remote show origin
 git checkout $build
 git status
 git add * 2>/dev/null
