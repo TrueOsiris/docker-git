@@ -22,7 +22,8 @@ else
 fi
 #git remote set-url origin git+ssh://git@github.com/trueosiris/docker-nginx-reverse-proxy.git
 currentdir=${PWD##*/}
-echo "currentdir = $currentdir"
+echo "repository = $currentdir"
+git remote set-url origin git+ssh://git@github.com/$GITUSER/$currentdir.git
 git checkout $build
 git status
 git add * 2>/dev/null
