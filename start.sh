@@ -1,7 +1,7 @@
 #!/bin/bash
 /usr/bin/touch /var/log/cron.log 2>/dev/null
 /usr/bin/chmod 666 /var/log/cron.log 2>/dev/null
-CF = "/mnt/github/credentials.txt"
+CF="/mnt/github/credentials.txt"
 if [ ! -f "$CF" ]; then
 	echo "$CF does not exist. Trying to create it."
 	touch "$CF"
