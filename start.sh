@@ -1,6 +1,15 @@
 #!/bin/bash
 /usr/bin/touch /var/log/cron.log 2>/dev/null
 /usr/bin/chmod 666 /var/log/cron.log 2>/dev/null
+CF = "/mnt/github/credentials.txt"
+if [ ! -f "$CF" ]; then
+	touch "$CF"
+	echo "GITUSER=" > "$CF"
+	echo "GITMAIL=" >> "$CF"
+	echo "DOCKERUSER=" >> "$CF"
+	echo "DOCKERPASS=" >> "$CF"
+fi
+source "$CF"
 
 tz_varname="TZ"
 tz=${!tz_varname}
@@ -14,17 +23,17 @@ if [ -z ${tz} ]; then
 	echo "Timezone not set. Defaulting to Europe/Brussels"
 	tz="Europe/Brussels"
 fi
-echo "timezone is $tz"
+echo "Timezone is $tz"
 if [ -z ${gituser} ]; then
-	echo "Container variable $gituser_varname not set."
-	echo "exiting"
+	echo "Variable $gituser_varname not set in credentials file."
+	echo "Exiting"
 	exit 0
 else
 	echo "gituser is set."
 fi
 if [ -z ${gitmail} ]; then
-        echo "Container variable $gitmail_varname not set."
-        echo "exiting"
+        echo "Variable $gitmail_varname not set in credentials file."
+        echo "Exiting"
         exit 0
 else
         echo "gitmail is set."

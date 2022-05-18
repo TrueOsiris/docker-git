@@ -6,7 +6,7 @@ RUN apt update -y && \
     apt-get upgrade -y && \
     apt-get install -y 	apt-utils 
 RUN apt-get install -y 	software-properties-common && \
-			curl
+			curl libcurl4
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
     apt update -y && \
