@@ -9,6 +9,7 @@ RUN apt update -y && \
 			tzdata \
 			cron \
 			logrotate \
+			docker-ce-cli \
     && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
