@@ -1,5 +1,7 @@
 # docker-git<br>
-Minimal Ubuntu 20.04 sandbox container with git functionalities, with some simplified commands
+Minimal Ubuntu 20.04 sandbox container with git functionalities, with some simplified commands.<br>
+Functionality: minimal container with vim & git to work on docker images.<br>
+Use at own risk, as the username/pass are docker parameters.
 
 ![Trueosiris Rules](https://img.shields.io/badge/trueosiris-rules-f08060) 
 [![Docker Pulls](https://badgen.net/docker/pulls/trueosiris/git?icon=docker&label=pulls)](https://hub.docker.com/r/trueosiris/git/) 
