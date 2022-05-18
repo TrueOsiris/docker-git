@@ -3,13 +3,13 @@ LABEL maintainer="Tim Chaubet tim@chaubet.be"
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
-    apt-get upgrade -y && \
-    apt install -y 	vim \
+    apt-get upgrade -y 
+RUN apt install -y 	vim \
 			git \
 			tzdata \
 			cron \
 			logrotate \
-			docker-ce-cli \
+			docker-ce \
     && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
