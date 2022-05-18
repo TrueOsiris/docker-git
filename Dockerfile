@@ -4,7 +4,7 @@ LABEL maintainer="Tim Chaubet tim@chaubet.be"
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
     apt-get upgrade -y && \
-    apt-get install apt-utils -y
+    apt-get install apt-utils software-properties-common -y
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
     apt update -y && \
     apt-get upgrade -y
