@@ -14,8 +14,10 @@ Use at own risk, as the username/pass are docker parameters.
 
 ### setup
 - At first start of the container, a credentials file will be created in your volume mounted to container path /mnt/github<br>
-  The container will be automatically stopped.<br>
+  The container will be automatically stopped.
 - Complete the credentials.txt file<br>
+  No spaces<br>
+  If there are symbols like $ in your user and/or pass, use single quotes.
 - Restart the container
 - Run the docker container and the generated ssh key will be in the docker log.
     
