@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 LABEL maintainer="Tim Chaubet tim@chaubet.be"
-
+USER root
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
     apt-get upgrade -y && \
