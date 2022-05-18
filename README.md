@@ -28,19 +28,39 @@ Now you can connect to the container:
     docker exec -it git /bin/bash
 
 and use commands gitpush & dockerpush<br>
-e.g.
+First, clone your git repository and edit/modify
 
     git clone https://github.com/yourgituser/yourgitrepo
     cd yourgitrepo
+
+Then you can use 
+
+    gitpush [comment] [tag]
+
+e.g.
+
+    gitpush
+    gitpush "upgraded python" 1.3	
     gitpush "adapted the README.md" main
 
-create your docker repo and build + push
+Create your docker repository on the docker hub.<br>
+After that you can build + push from this container
+
+    dockerpush <repository>[:tag]
+
+e.g.
 
     dockerpush yourdockerrepo
-
-or 
-
     dockerpush yourdockerrepo:1.0
+
+Or do it all at once with push
+
+    push <docker-repository>[:docker-tag]
+
+e.g.
+
+    push yourdockerrepo:1.0
+
 
 ### environment variables
 
