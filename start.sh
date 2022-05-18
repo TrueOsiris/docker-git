@@ -72,6 +72,7 @@ echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd' >> /e
 /usr/bin/cp /root/.* /mnt/github/ 2>/dev/null
 /usr/bin/ln -s /gitpush /usr/bin/gitpush
 /usr/bin/ln -s /dockerpush /usr/bin/dockerpush
+/usr/bin/ln -s /push /usr/bin/push
 /usr/bin/mkdir /mnt/github/.ssh 2>/dev/null
 echo 'n' | /usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f /mnt/github/.ssh/id_ed25519 2>/dev/null 1>/dev/null
 echo ' '

@@ -29,6 +29,8 @@ COPY gitpush /gitpush
 RUN chmod +x /gitpush
 COPY dockerpush /dockerpush
 RUN chmod +x /dockerpush
+COPY push /push
+RUN chmod +x /push
 WORKDIR /mnt/github
 VOLUME ["/mnt/github"]
 CMD ["/start.sh"]
