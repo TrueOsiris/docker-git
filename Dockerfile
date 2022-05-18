@@ -4,8 +4,8 @@ LABEL maintainer="Tim Chaubet tim@chaubet.be"
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
     apt-get upgrade -y && \
-    apt-get install -y 	apt-utils && \
-			software-properties-common && \
+    apt-get install -y 	apt-utils 
+RUN apt-get install -y 	software-properties-common && \
 			curl
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
