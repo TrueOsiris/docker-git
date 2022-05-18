@@ -16,8 +16,17 @@ tz_varname="TZ"
 tz=${!tz_varname}
 gituser_varname="GITUSER"
 gituser=${!gituser_varname}
+export GITUSER=$gituser
 gitmail_varname="GITMAIL"
 gitmail=${!gitmail_varname}
+export GITMAIL=$gitmail
+dockeruser_varname="DOCKERUSER"
+dockeruser=${!dockeruser_varname}
+export DOCKERUSER=$dockeruser
+dockerpass_varname="DOCKERPASS"
+dockerpass=${!dockerpass_varname}
+export DOCKERPASS=$dockerpass
+
 
 if [ -z ${tz} ]; then
 	echo "Container variable TZ:"
@@ -32,13 +41,28 @@ if [ -z ${gituser} ] || [ ${gituser} = "" ]; then
 else
 	echo "gituser is set."
 fi
-if [ -z ${gitmail} ]; then
+if [ -z ${gitmail} ] || [ ${gitmail} = "" ]; then
         echo "Variable $gitmail_varname not set in credentials file."
         echo "Exiting"
         exit 0
 else
         echo "gitmail is set."
 fi
+if [ -z ${dockeruser} ] || [ ${dockeruser} = "" ]; then
+        echo "Variable $dockeruser_varname not set in credentials file."
+        echo "Exiting"
+        exit 0
+else
+        echo "dockeruser is set."
+fi
+if [ -z ${dockerpass} ] || [ ${dockerpass} = "" ]; then
+        echo "Variable $dockerpass_varname not set in credentials file."
+        echo "Exiting"
+        exit 0
+else
+        echo "dockerpass is set."
+fi
+
 
 /usr/bin/git config --system color.ui true
 /usr/bin/git config --system user.name "$gituser"
