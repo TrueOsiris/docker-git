@@ -25,7 +25,7 @@ if [ -z ${tz} ]; then
 	tz="Europe/Brussels"
 fi
 echo "Timezone is $tz"
-if [ -z ${gituser} ]; then
+if [ -z ${gituser} ] || [ ${gituser} = "" ]; then
 	echo "Variable $gituser_varname not set in credentials file."
 	echo "Exiting"
 	exit 0
