@@ -1,4 +1,7 @@
 #!/bin/bash
+CF="/mnt/github/credentials.txt"
+source "$CF"
+
 if [ -z "$GITUSER" ]; then
 	echo "Variable GITUSER is not set. Use the command"
 	echo " export GITUSER=yourgituseraccount"

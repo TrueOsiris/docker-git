@@ -1,4 +1,6 @@
 #!/bin/bash
+CF="/mnt/github/credentials.txt"
+source "$CF"
 dockeruser=${DOCKERUSER}
 dockerpass=${DOCKERPASS}
 docker login --username="$dockeruser" --password="$dockerpass"
