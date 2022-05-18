@@ -81,7 +81,8 @@ e.g.
 
 | Volume                    | Container path                                                   |
 | ------------------------- | ---------------------------------------------------------------- |
-| github                    | /mnt/github
+| github                    | /mnt/github |
+| /var/run/docker.sock | /var/run/docker.sock |
 
 ### links
 
