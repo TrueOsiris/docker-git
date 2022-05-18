@@ -3,6 +3,7 @@
 /usr/bin/chmod 666 /var/log/cron.log 2>/dev/null
 CF = "/mnt/github/credentials.txt"
 if [ ! -f "$CF" ]; then
+	echo "$CF does not exist. Trying to create it."
 	touch "$CF"
 	echo "GITUSER=" > "$CF"
 	echo "GITMAIL=" >> "$CF"
