@@ -52,6 +52,7 @@ e.g.
 
     dockerpush yourdockerrepo
     dockerpush yourdockerrepo:1.0
+    dockerpush yourdockerrepo:1.1 --purge-images
 
 Or do it all at once with push
 
@@ -86,7 +87,12 @@ e.g.
 
 ### Run command
 
-    docker run -d --name='git' --net='bridge' -e TZ="Europe/Paris" -v '/path/on/host/':'/mnt/github':'rw' -v '/var/run/docker.sock':'/var/run/docker.sock':'rw' 'trueosiris/git'
+    docker run -d --name='git' \
+    --net='bridge' \
+    -e TZ="Europe/Paris" \
+    -v '/path/on/host/':'/mnt/github':'rw' \
+    -v '/var/run/docker.sock':'/var/run/docker.sock':'rw' \
+    'trueosiris/git'
 
 ### links
 
