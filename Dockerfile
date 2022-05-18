@@ -5,7 +5,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
     apt-get upgrade -y && \
     apt-get install apt-utils software-properties-common -y
-RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
     apt update -y && \
     apt-get upgrade -y
 RUN apt install -y 	vim \

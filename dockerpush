@@ -14,12 +14,12 @@ else
 		tag="latest"
 	fi
 	if [ -z $2 ]; then
-		docker images | grep "$repo" | awk '{print $1":"$2}' | xargs docker rmi
+		echo "leaving local images intact. use --purge-images as parameter 2 to remove them."
 	else
-		if [[ $2 != "leave-images" ]]; then
+		if [[ $2 == "--purge-images" ]]; then
 			docker images | grep "$repo" | awk '{print $1":"$2}' | xargs docker rmi
 		else
-			echo "leaving local images intact."
+			echo "leaving local images intact. use --purge-images as parameter 2 to remove them."
 		fi
 	fi
 	echo "building $repo:$tag"
