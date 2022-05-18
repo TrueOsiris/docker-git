@@ -3,7 +3,8 @@ LABEL maintainer="Tim Chaubet tim@chaubet.be"
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
-    apt-get upgrade -y 
+    apt-get upgrade -y \
+    apt-get install apt-utils -y
 RUN apt install -y 	vim \
 			git \
 			tzdata \
