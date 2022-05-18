@@ -51,7 +51,7 @@ or
 ### credentials.txt file will contain the following variables (do not add spaces!)
 
 | credentials.txt variable | Description |
-
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | GITUSER | your github username / repository name |
 | GITMAIL | your github email / signin account |
 | DOCKERUSER | your docker user account |
