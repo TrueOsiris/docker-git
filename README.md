@@ -84,6 +84,10 @@ e.g.
 | github                    | /mnt/github |
 | /var/run/docker.sock | /var/run/docker.sock |
 
+### Run command
+
+    docker run -d --name='git' --net='bridge' -e TZ="Europe/Paris" -v '/path/on/host/':'/mnt/github':'rw' -v '/var/run/docker.sock':'/var/run/docker.sock':'rw' 'trueosiris/git'
+
 ### links
 
 github repo: https://github.com/TrueOsiris/docker-git <br>
