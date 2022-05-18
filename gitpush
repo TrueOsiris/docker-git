@@ -1,4 +1,16 @@
 #!/bin/bash
+if [ -z "$GITUSER" ]; then
+	echo "Variable GITUSER is not set. Use the command"
+	echo " export GITUSER=yourgituseraccount"
+	echo "to set it."
+	exit 0
+fi
+if [ -z "$GITMAIL" ]; then
+	echo "Variable GITMAIL is not set. Use the command"
+	echo " export GITMAIL=yourgitmail"
+	echo "to set it."
+	exit 0
+fi
 /usr/bin/git config --global user.name "$GITUSER"
 /usr/bin/git config --global user.email "$GITMAIL"
 if [ -z "$1" ]; then
@@ -14,8 +26,7 @@ else
 		comment="$1"
 	fi
 fi
-if [ -z "$2" ];
-then 
+if [ -z "$2" ]; then 
 	build="main"
 else
 	build="$2"

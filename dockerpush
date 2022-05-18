@@ -5,6 +5,7 @@ docker login --username="$dockeruser" --password="$dockerpass"
 if [ -z $1 ];
 then
 	echo "No repository name given as parameter."
+	exit 0
 else
 	repo=$(echo $1 | cut -d':' -f1)
 	if [[ $1 == *":"* ]]; then
