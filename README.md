@@ -14,6 +14,7 @@ Use at own risk, as the username/pass are docker parameters.
 
 ### setup
 - At first start of the container, a credentials file will be created in your volume mounted to container path /mnt/github<br>
+  The container will be automatically stopped.<br>
 - Complete the credentials.txt file<br>
 - Restart the container
 - Run the docker container and the generated ssh key will be in the docker log.
@@ -46,10 +47,15 @@ or
 | Environment Variable | Key | Description |
 | -------------------- | ---------------------------- | ------------------------------------------------------------------------------- |
 | TZ | Europe/Brussels | timezone for ntpdate |
-| GITUSER | your_github_username | your github username / repository name |
-| GITMAIL | your_github_email | your github email / signin account |
-| DOCKERUSER | your_docker_account | your docker user account |
-| DOCKERPASS | your_docker_password | your docker password |
+
+### credentials.txt file will contain the following variables (do not add spaces!)
+
+| credentials.txt variable | Description |
+
+| GITUSER | your github username / repository name |
+| GITMAIL | your github email / signin account |
+| DOCKERUSER | your docker user account |
+| DOCKERPASS | your docker password |
 
 ### volumes
 
