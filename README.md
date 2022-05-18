@@ -13,16 +13,20 @@ Use at own risk, as the username/pass are docker parameters.
 ![Github last-commit](https://img.shields.io/github/last-commit/TrueOsiris/docker-git)
 
 ### setup
-Run the docker container and the generated ssh key will be in the docker log.
+- At first start of the container, a credentials file will be created in your volume mounted to container path /mnt/github<br>
+- Complete the credentials.txt file<br>
+- Restart the container
+- Run the docker container and the generated ssh key will be in the docker log.
     
     docker logs -f git
 
-add this to your github.com account via Settings -> SSH and GPG keys
-now you can connect to the container
+- add this to your github.com account via Settings -> SSH and GPG keys<br>
+
+Now you can connect to the container:
 
     docker exec -it git /bin/bash
 
-and use commands gitpush & dockerpush
+and use commands gitpush & dockerpush<br>
 e.g.
 
     git clone https://github.com/yourgituser/yourgitrepo
