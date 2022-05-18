@@ -91,3 +91,4 @@ dockerhub repo: https://hub.docker.com/repository/docker/trueosiris/git <br>
 ### log
 
 log arrives in /var/log/git.log.<br>
+README.md will be updated on the docker hub using peterevans/dockerhub-description, so a shoutout to him!
