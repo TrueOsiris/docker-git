@@ -5,6 +5,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
     apt-get upgrade -y && \
     apt-get install apt-utils -y
+RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
+    apt update -y && \
+    apt-get upgrade -y
 RUN apt install -y 	vim \
 			git \
 			tzdata \
