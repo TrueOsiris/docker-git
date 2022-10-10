@@ -85,7 +85,8 @@ echo "$date Running start.sh" >> /var/log/cron.log
 echo "30 5 * * * /usr/sbin/logrotate /etc/logrotate.d/git-cron" >> /etc/cron.d/git-cron
 echo " " >> /etc/cron.d/git-cron
 /usr/bin/sed '/root/s!\(.*:\).*:\(.*\)!\1/mnt/github:\2!' /etc/passwd > /etc/passwd2
-/usr/bin/mv /etc/passwd2 /etc/passwd
+/usr/bin/mv /etc/passwd2 /etc/passwd 2>&1
+/usr/bin/sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config 2>&1
 /usr/bin/crontab /etc/cron.d/git-cron
 /usr/sbin/cron -f
 /usr/bin/tail -f /var/log/cron.log
