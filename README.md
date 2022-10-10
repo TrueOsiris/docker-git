@@ -1,5 +1,5 @@
 # docker-git<br>
-Minimal Ubuntu 20.04 sandbox container with git functionalities, with some simplified commands.<br>
+Minimal Ubuntu 22.04 sandbox container with git functionalities, with some simplified commands.<br>
 Functionality: minimal container with vim & git to work on docker images.<br>
 Use at own risk, as the username/pass are docker parameters.
 
