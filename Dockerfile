@@ -1,10 +1,11 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 LABEL maintainer="Tim Chaubet tim@chaubet.be"
 USER root
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && \
     apt-get upgrade -y && \
-    apt-get install -y 	apt-utils 
+    apt-get install -y 	apt-utils \
+                        openssh-server       
 RUN apt-get install -y 	software-properties-common 
 RUN apt-get install -y 	curl libcurl4
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
