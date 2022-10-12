@@ -9,8 +9,12 @@ RUN apt update -y && \
 RUN apt-get install -y 	software-properties-common 
 RUN apt-get install -y 	curl libcurl4
 #RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key --keyring /etc/apt/trusted.gpg.d/docker-apt-key.gpg add && \
-    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
+#RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key --keyring /etc/apt/trusted.gpg.d/docker-apt-key.gpg add && \
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | \
+    sudo tee /usr/share/keyrings/docker-ce-archive-keyring.gpg 2>&1 
+RUN add-apt-repository "deb [arch=$(dpkg --print-architecture)] \
+       signed-by=/usr/share/keyrings/docker-ce-archive-keyring.gpg \
+       https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
     apt update -y && \
     apt-get upgrade -y
 RUN apt install -y 	vim \
