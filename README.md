@@ -1,7 +1,7 @@
 # docker-git<br>
 Minimal Ubuntu 22.04 sandbox container with git functionalities, with some simplified commands.<br>
 Functionality: minimal container with vim & git to work on docker images.<br>
-Use at own risk, as the username/pass are docker parameters.
+Use at own risk, as the username/pass are somewhat exposed in a credentials file.
 
 ![Trueosiris Rules](https://img.shields.io/badge/trueosiris-rules-f08060) 
 [![Docker Pulls](https://badgen.net/docker/pulls/trueosiris/git?icon=docker&label=pulls)](https://hub.docker.com/r/trueosiris/git/) 
@@ -15,7 +15,7 @@ Use at own risk, as the username/pass are docker parameters.
 ### setup
 - At first start of the container, a credentials file will be created in your volume mounted to container path /mnt/github<br>
   The container will be automatically stopped.
-- Complete the credentials.txt file<br>
+- Complete the ".credentials.txt" file<br>
   No spaces<br>
   If there are symbols like $ in your user and/or pass, use single quotes.
 - Restart the container
@@ -73,7 +73,7 @@ e.g.
 
 ### credentials.txt file will contain the following variables (do not add spaces!)
 
-| credentials.txt variable | Description |
+| .credentials.txt variable | Description |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | GITUSER | your github username / repository name |
 | GITMAIL | your github email / signin account |
@@ -85,8 +85,16 @@ e.g.
 
 | Volume                    | Container path                                                   |
 | ------------------------- | ---------------------------------------------------------------- |
-| github                    | /mnt/github |
+| /host/folder/with/repos   | /mnt/github |
 | /var/run/docker.sock | /var/run/docker.sock |
+
+### ports
+
+Optionally exposed ssh port
+
+| Host port | Container port |
+| --- | --- |
+| 1234 | 22 |
 
 ### Run command
 
