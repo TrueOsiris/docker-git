@@ -79,6 +79,7 @@ e.g.
 | GITMAIL | your github email / signin account |
 | DOCKERUSER | your docker user account |
 | DOCKERPASS | your docker password |
+| SSHPASS | openssh-server password |
 
 ### volumes
 

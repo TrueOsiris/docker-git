@@ -9,6 +9,7 @@ if [ ! -f "$CF" ]; then
 	echo "GITMAIL=" >> "$CF"
 	echo "DOCKERUSER=" >> "$CF"
 	echo "DOCKERPASS=" >> "$CF"
+        echo "SSHPASS=" >> "$CF"
 fi
 source "$CF"
 
@@ -26,6 +27,9 @@ export DOCKERUSER=$dockeruser
 dockerpass_varname="DOCKERPASS"
 dockerpass=${!dockerpass_varname}
 export DOCKERPASS=$dockerpass
+sshpass_varname="SSHPASS"
+sshpass=${!sshpass_varname}
+export SSHPASS=$sshpass
 
 
 if [ -z ${tz} ]; then
@@ -84,6 +88,7 @@ echo $'/var/log/cron.log {\n  rotate 7\n  daily\n  missingok\n  notifempty\n  cr
 echo "$date Running start.sh" >> /var/log/cron.log
 echo "30 5 * * * /usr/sbin/logrotate /etc/logrotate.d/git-cron" >> /etc/cron.d/git-cron
 echo " " >> /etc/cron.d/git-cron
+echo "root:$sshpass" | chpasswd
 /usr/bin/sed '/root/s!\(.*:\).*:\(.*\)!\1/mnt/github:\2!' /etc/passwd > /etc/passwd2
 /usr/bin/mv /etc/passwd2 /etc/passwd 2>&1
 /usr/bin/sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config 2>&1
