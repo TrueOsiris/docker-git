@@ -8,7 +8,8 @@ RUN apt update -y && \
                         openssh-server       
 RUN apt-get install -y 	software-properties-common 
 RUN apt-get install -y 	curl libcurl4
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+#RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key --keyring /etc/apt/trusted.gpg.d/docker-apt-key.gpg add && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && \
     apt update -y && \
     apt-get upgrade -y
