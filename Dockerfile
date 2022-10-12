@@ -11,10 +11,9 @@ RUN apt-get install -y 	curl libcurl4
 #RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
 #RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key --keyring /etc/apt/trusted.gpg.d/docker-apt-key.gpg add && \
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | \
-    tee /usr/share/keyrings/docker-ce-archive-keyring.gpg 2>&1 
-RUN add-apt-repository "deb [arch=amd64] \
-       signed-by=/usr/share/keyrings/docker-ce-archive-keyring.gpg \
-       https://download.docker.com/linux/ubuntu jammy stable" && \
+    tee /usr/share/keyrings/docker-ce-archive-keyring.gpg 
+RUN echo "deb [arch=amd64] signed-by=/usr/share/keyrings/docker-ce-archive-keyring.gpg \
+        https://download.docker.com/linux/ubuntu jammy stable" | tee /etc/apt/sources.list.d/docker-ce.list && \
     apt update -y && \
     apt-get upgrade -y
 RUN apt install -y 	vim \
