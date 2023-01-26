@@ -7,6 +7,8 @@ if [ ! -f "$CF" ]; then
 	touch "$CF"
 	echo "GITUSER=" > "$CF"
 	echo "GITMAIL=" >> "$CF"
+	echo "GITREPOUSER=" >> "$CF"
+	echo "GITROOT="git@github.com/" >> "$CF"
 	echo "DOCKERUSER=" >> "$CF"
 	echo "DOCKERPASS=" >> "$CF"
         echo "SSHPASS=" >> "$CF"
@@ -30,7 +32,15 @@ export DOCKERPASS=$dockerpass
 sshpass_varname="SSHPASS"
 sshpass=${!sshpass_varname}
 export SSHPASS=$sshpass
-
+gitrepouser_varname="GITREPOUSER"
+gitrepouser=${!gitrepouser_varname}
+if [ -z $gitrepouser || $gitrepouser=="" ]; then
+	gitrepouser=$gituser
+fi
+export GITREPOUSER=$gitrepouser
+gitroot_varname="GITROOT"
+gitroot=${!gitroot_varname}
+export GITROOT=$gitroot
 
 if [ -z ${tz} ]; then
 	echo "Container variable TZ:"
@@ -82,8 +92,8 @@ echo 'n' | /usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f /mnt/github/.ss
 echo ' '
 /usr/bin/cat /mnt/github/.ssh/id_ed25519.pub
 echo ' '
-ssh -oStrictHostKeyChecking=no -T git@github.com 2>/dev/null 1>/dev/null
-/usr/bin/git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+ssh -oStrictHostKeyChecking=no -T $gitroot 2>/dev/null 1>/dev/null
+/usr/bin/git config --global url.ssh://$gitroot/.insteadOf https://github.com/
 echo $'/var/log/cron.log {\n  rotate 7\n  daily\n  missingok\n  notifempty\n  create\n}' > /etc/logrotate.d/git-cron
 echo "$date Running start.sh" >> /var/log/cron.log
 echo "30 5 * * * /usr/sbin/logrotate /etc/logrotate.d/git-cron" >> /etc/cron.d/git-cron
