@@ -37,7 +37,7 @@ else
 fi
 currentdir=${PWD##*/}
 echo "repository = $currentdir"
-git remote set-url origin $GITROOT/$GITREPOUSER/$currentdir.git
+git remote set-url origin "$GITROOT/$GITREPOUSER/$currentdir.git"
 git remote show origin
 git checkout $build
 git status
