@@ -34,7 +34,7 @@ sshpass=${!sshpass_varname}
 export SSHPASS=$sshpass
 gitrepouser_varname="GITREPOUSER"
 gitrepouser=${!gitrepouser_varname}
-if [ -z $gitrepouser || $gitrepouser=="" ]; then
+if [[ -z $gitrepouser || $gitrepouser == "" ]]; then
 	gitrepouser=$gituser
 fi
 export GITREPOUSER=$gitrepouser
