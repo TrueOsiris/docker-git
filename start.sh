@@ -8,7 +8,7 @@ if [ ! -f "$CF" ]; then
 	echo "GITUSER=" > "$CF"
 	echo "GITMAIL=" >> "$CF"
 	echo "GITREPOUSER=" >> "$CF"
-	echo "GITROOT="git@github.com/" >> "$CF"
+	echo "GITROOT="git+ssh://git@github.com/" >> "$CF"
 	echo "DOCKERUSER=" >> "$CF"
 	echo "DOCKERPASS=" >> "$CF"
         echo "SSHPASS=" >> "$CF"
