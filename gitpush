@@ -39,6 +39,8 @@ currentdir=${PWD##*/}
 echo "repository = $currentdir"
 echo ">git branch -r"
 git branch -r
+echo ">git remote -v"
+git remote -v
 echo ">git remote set-url origin \"$GITROOT/$GITREPOUSER/$currentdir.git\""
 git remote set-url origin "$GITROOT/$GITREPOUSER/$currentdir.git"
 echo ">git remote show origin"
