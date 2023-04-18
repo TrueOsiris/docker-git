@@ -82,12 +82,13 @@ fi
 /usr/bin/git config --system color.ui true
 /usr/bin/git config --system user.name "$gituser"
 /usr/bin/git config --system user.email "$gitmail"
+/usr/bin/git config --global init.defaultBranch main
 /usr/bin/dircolors -p > ~/.dircolors
 echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd' >> /etc/bash.bashrc
 /usr/bin/cp /root/.* $basevol/ 2>/dev/null
-/usr/bin/ln -s /gitpush /usr/bin/gitpush
-/usr/bin/ln -s /dockerpush /usr/bin/dockerpush
-/usr/bin/ln -s /push /usr/bin/push
+/usr/bin/ln -s /gitpush /usr/bin/gitpush 2>&1
+/usr/bin/ln -s /dockerpush /usr/bin/dockerpush 2>&1
+/usr/bin/ln -s /push /usr/bin/push 2>&1
 /usr/bin/mkdir $basevol/.ssh 2>/dev/null
 echo 'n' | /usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f $basevol/.ssh/id_ed25519 2>/dev/null 1>/dev/null
 echo ' '
