@@ -2,7 +2,7 @@
 /usr/bin/touch /var/log/cron.log 2>/dev/null
 /usr/bin/chmod 666 /var/log/cron.log 2>/dev/null
 basevol="/mnt/repos"
-CF="$basevol/.credentials.txt"
+CF=/mnt/repos/.credentials.txt
 if [ ! -f "$CF" ]; then
 	echo "$CF does not exist. Trying to create it."
 	touch "$CF"
@@ -100,7 +100,7 @@ echo "$date Running start.sh" >> /var/log/cron.log
 echo "30 5 * * * /usr/sbin/logrotate /etc/logrotate.d/git-cron" >> /etc/cron.d/git-cron
 echo " " >> /etc/cron.d/git-cron
 echo "root:$sshpass" | chpasswd
-/usr/bin/sed '/root/s!\(.*:\).*:\(.*\)!\1$basevol:\2!' /etc/passwd > /etc/passwd2
+/usr/bin/sed '/root/s!\(.*:\).*:\(.*\)!\1/mnt/repos:\2!' /etc/passwd > /etc/passwd2
 /usr/bin/mv /etc/passwd2 /etc/passwd 2>&1
 /usr/bin/sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config 2>&1
 /etc/init.d/ssh start 2>&1
