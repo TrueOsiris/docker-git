@@ -36,6 +36,8 @@ COPY dockerpush /dockerpush
 RUN chmod +x /dockerpush
 COPY push /push
 RUN chmod +x /push
-WORKDIR /mnt/repos
+
 VOLUME ["/mnt/repos"]
+WORKDIR /mnt/repos
+
 CMD ["/start.sh"]

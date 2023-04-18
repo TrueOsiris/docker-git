@@ -1,5 +1,6 @@
 #!/bin/bash
-CF="/mnt/github/.credentials.txt"
+basedir=/mnt/repos
+CF="$basedir/.credentials.txt"
 greencolor='\033[0;32m'
 nocolor='\033[0m'
 source "$CF"

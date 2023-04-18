@@ -1,5 +1,6 @@
 #!/bin/bash
-CF="/mnt/github/.credentials.txt"
+basedir=/mnt/repos
+CF="$basedir/.credentials.txt"
 source "$CF"
 
 if [ -z "$GITUSER" ]; then
