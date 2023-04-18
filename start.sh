@@ -1,7 +1,8 @@
 #!/bin/bash
 /usr/bin/touch /var/log/cron.log 2>/dev/null
 /usr/bin/chmod 666 /var/log/cron.log 2>/dev/null
-CF="/mnt/repos/.credentials.txt"
+basevol="/mnt/repos"
+CF="$basevol/.credentials.txt"
 if [ ! -f "$CF" ]; then
 	echo "$CF does not exist. Trying to create it."
 	touch "$CF"
@@ -83,14 +84,14 @@ fi
 /usr/bin/git config --system user.email "$gitmail"
 /usr/bin/dircolors -p > ~/.dircolors
 echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd' >> /etc/bash.bashrc
-/usr/bin/cp /root/.* /mnt/repos/ 2>/dev/null
+/usr/bin/cp /root/.* $basevol/ 2>/dev/null
 /usr/bin/ln -s /gitpush /usr/bin/gitpush
 /usr/bin/ln -s /dockerpush /usr/bin/dockerpush
 /usr/bin/ln -s /push /usr/bin/push
-/usr/bin/mkdir /mnt/repos/.ssh 2>/dev/null
-echo 'n' | /usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f /mnt/repos/.ssh/id_ed25519 2>/dev/null 1>/dev/null
+/usr/bin/mkdir $basevol/.ssh 2>/dev/null
+echo 'n' | /usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f $basevol/.ssh/id_ed25519 2>/dev/null 1>/dev/null
 echo ' '
-/usr/bin/cat /mnt/repos/.ssh/id_ed25519.pub
+/usr/bin/cat $basevol/.ssh/id_ed25519.pub
 echo ' '
 ssh -oStrictHostKeyChecking=no -T $gitroot 2>/dev/null 1>/dev/null
 /usr/bin/git config --global url.ssh://$gitroot/.insteadOf https://github.com/
@@ -99,7 +100,7 @@ echo "$date Running start.sh" >> /var/log/cron.log
 echo "30 5 * * * /usr/sbin/logrotate /etc/logrotate.d/git-cron" >> /etc/cron.d/git-cron
 echo " " >> /etc/cron.d/git-cron
 echo "root:$sshpass" | chpasswd
-/usr/bin/sed '/root/s!\(.*:\).*:\(.*\)!\1/mnt/repos:\2!' /etc/passwd > /etc/passwd2
+/usr/bin/sed '/root/s!\(.*:\).*:\(.*\)!\1$basevol:\2!' /etc/passwd > /etc/passwd2
 /usr/bin/mv /etc/passwd2 /etc/passwd 2>&1
 /usr/bin/sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config 2>&1
 /etc/init.d/ssh start 2>&1
