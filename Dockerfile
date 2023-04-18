@@ -36,6 +36,6 @@ COPY dockerpush /dockerpush
 RUN chmod +x /dockerpush
 COPY push /push
 RUN chmod +x /push
-WORKDIR /mnt/github
-VOLUME ["/mnt/github"]
+WORKDIR /mnt/repos
+VOLUME ["/mnt/repos"]
 CMD ["/start.sh"]
