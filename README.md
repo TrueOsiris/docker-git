@@ -13,7 +13,7 @@ Use at own risk, as the username/pass are somewhat exposed in a credentials file
 ![Github last-commit](https://img.shields.io/github/last-commit/TrueOsiris/docker-git)
 
 ### setup
-- At first start of the container, a credentials file will be created in your volume mounted to container path /mnt/github<br>
+- At first start of the container, a credentials file will be created in your volume mounted to container path /mnt/repos<br>
   The container will be automatically stopped.
 - Complete the ".credentials.txt" file<br>
   No spaces<br>
