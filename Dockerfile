@@ -23,6 +23,7 @@ RUN apt install -y 	vim \
 			cron \
 			logrotate \
 			docker-ce \
+			awscli \
     && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
