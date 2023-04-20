@@ -43,7 +43,7 @@ git branch -r
 echo ">git remote -v"
 git remote -v
 echo ">git remote set-url origin \"https://$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git\""
-git remote set-url origin "$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git"
+git remote set-url origin "https://$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git"
 echo ">git remote show origin"
 git remote show origin
 echo ">git checkout $build"

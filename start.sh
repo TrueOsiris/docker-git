@@ -13,7 +13,7 @@ if [ ! -f "$CF" ]; then
 	echo "DOCKERUSER=" >> "$CF"
 	echo "DOCKERPASS=" >> "$CF"
         echo "SSHPASS=" >> "$CF"
-        echo "TOKEN=" >> "$CF"
+        echo "GITTOKEN=" >> "$CF"
 fi
 source "$CF"
 
@@ -43,7 +43,7 @@ export GITREPOUSER=$gitrepouser
 gitroot_varname="GITROOT"
 gitroot=${!gitroot_varname}
 export GITROOT=$gitroot
-gittoken_varname="TOKEN"
+gittoken_varname="GITTOKEN"
 gittoken=${!gittoken_varname}
 export GITTOKEN=$gittoken
 
