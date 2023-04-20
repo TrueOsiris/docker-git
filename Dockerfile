@@ -6,7 +6,8 @@ RUN apt update -y && \
     apt-get upgrade -y && \
     apt-get install -y 	apt-utils \
                         openssh-server \
-                        gpg      
+                        gpg \
+                        wget
 RUN apt-get install -y 	software-properties-common 
 RUN apt-get install -y 	curl libcurl4
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | \
@@ -25,6 +26,9 @@ RUN apt install -y 	vim \
     && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
+RUN wget http://launchpadlibrarian.net/571591066/amazon-ecr-credential-helper_0.5.0-1build1_amd64.deb \
+    && dpkg -i amazon-ecr-credential-helper_0.5.0-1build1_amd64.deb \
+    && rm amazon-ecr-credential-helper_0.5.0-1build1_amd64.deb
 
 ENV TZ=Europe/Brussels
 
