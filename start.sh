@@ -13,6 +13,7 @@ if [ ! -f "$CF" ]; then
 	echo "DOCKERUSER=" >> "$CF"
 	echo "DOCKERPASS=" >> "$CF"
         echo "SSHPASS=" >> "$CF"
+        echo "TOKEN=" >> "$CF"
 fi
 source "$CF"
 
@@ -42,6 +43,9 @@ export GITREPOUSER=$gitrepouser
 gitroot_varname="GITROOT"
 gitroot=${!gitroot_varname}
 export GITROOT=$gitroot
+gittoken_varname="TOKEN"
+gittoken=${!gittoken_varname}
+export GITTOKEN=$gittoken
 
 if [ -z ${tz} ]; then
 	echo "Container variable TZ:"
@@ -49,21 +53,21 @@ if [ -z ${tz} ]; then
 	tz="Europe/Brussels"
 fi
 echo "Timezone is $tz"
-if [ -z ${gituser} ] || [ ${gituser} = "" ]; then
+if [ -z ${gituser} ] || [ ${gituser} == "" ]; then
 	echo "Variable $gituser_varname not set in credentials file."
 	echo "Exiting"
 	exit 0
 else
 	echo "gituser is set."
 fi
-if [ -z ${gitmail} ] || [ ${gitmail} = "" ]; then
+if [ -z ${gitmail} ] || [ ${gitmail} == "" ]; then
         echo "Variable $gitmail_varname not set in credentials file."
         echo "Exiting"
         exit 0
 else
         echo "gitmail is set."
 fi
-if [ -z ${dockeruser} ] || [ ${dockeruser} = "" ]; then
+if [ -z ${dockeruser} ] || [ ${dockeruser} == "" ]; then
         echo "Variable $dockeruser_varname not set in credentials file."
         echo "Exiting"
         exit 0
@@ -77,7 +81,13 @@ if [ -z ${dockerpass} ] || [ ${dockerpass} = "" ]; then
 else
         echo "dockerpass is set."
 fi
-
+if [ -z ${gittoken} ] || [ ${gittoken} == "" ]; then
+	echo "Variable $gittoken_varname not set in credentials file."
+	echo "Exiting"
+	exit 0
+else
+	echo "gittoken is set."
+fi
 
 /usr/bin/git config --system color.ui true
 /usr/bin/git config --system user.name "$gituser"
