@@ -1,0 +1,38 @@
+#!/bin/bash
+basedir=/mnt/repos
+CF="$basedir/.credentials.txt"
+greencolor='\033[0;32m'
+redcolor='\033[0;31m'
+nocolor='\033[0m'
+source "$CF"
+awskey=${AWSKEY}
+awssecret=${AWSSECRET}
+awsregion=${AWSREGION}
+if [ $awskey == "" ] || [ $awssecret == "" ] || [ $awsregion == "" ]; then
+        echo "AWS credentials not set in ~/.credentials.txt"
+else
+        if [ -z $1 ]; then
+                echo -e "${redcolor}No repository name given as parameter.${nocolor}"
+                exit 0
+        else
+                if [ -z $2 ]; then
+                        echo -e "${redcolor}No ECR location given as parameter.${nocolor}"
+                else
+                        repo=$(echo $1 | cut -d':' -f1)
+                        if [[ $1 == *":"* ]]; then
+                                tag=$(echo $1 | cut -d':' -f2)
+                        else
+                                tag="latest"
+                        fi
+                        echo -e "${greencolor} (1/4) building $repo:$tag${nocolor}"
+                        docker build -t "$repo:$tag" .
+                        echo -e "${greencolor} (2/4) logging in to AWS ECR target docker repository.${nocolor}"
+                        echo -e "${greencolor} aws ecr get-login-password --region $awsregion | docker login --username AWS --password-stdin $2${nocolor}"
+                        /usr/bin/aws ecr get-login-password --region $awsregion | docker login --username AWS --password-stdin $2
+                        echo -e "${greencolor} (3/4) docker tag $repo:$tag $2${nocolor}"
+                        docker tag $repo:$tag $2
+                        echo -e "${greencolor} (3/4) docker push $2${nocolor}"
+                        docker push $2
+                fi
+        fi
+fi

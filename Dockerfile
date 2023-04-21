@@ -41,6 +41,8 @@ COPY dockerpush /dockerpush
 RUN chmod +x /dockerpush
 COPY push /push
 RUN chmod +x /push
+COPY awspush /awspush
+RUN chmod +x /awspush
 
 VOLUME ["/mnt/repos"]
 WORKDIR /mnt/repos

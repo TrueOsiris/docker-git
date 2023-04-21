@@ -14,6 +14,9 @@ if [ ! -f "$CF" ]; then
 	echo "DOCKERPASS=" >> "$CF"
         echo "SSHPASS=" >> "$CF"
         echo "GITTOKEN=" >> "$CF"
+	echo "AWSKEY=" >> "$CF"
+	echo "AWSSECRET=" >> "$CF"
+	echo "AWSREGION=" >> "$CF"
 fi
 source "$CF"
 
@@ -55,43 +58,33 @@ fi
 echo "Timezone is $tz"
 if [ -z ${gituser} ] || [ ${gituser} == "" ]; then
 	echo "Variable $gituser_varname not set in credentials file."
-	echo "Exiting"
-	exit 0
 else
 	echo "gituser is set."
+	/usr/bin/git config --system user.name "$gituser"
 fi
 if [ -z ${gitmail} ] || [ ${gitmail} == "" ]; then
         echo "Variable $gitmail_varname not set in credentials file."
-        echo "Exiting"
-        exit 0
 else
         echo "gitmail is set."
+	/usr/bin/git config --system user.email "$gitmail"
 fi
 if [ -z ${dockeruser} ] || [ ${dockeruser} == "" ]; then
         echo "Variable $dockeruser_varname not set in credentials file."
-        echo "Exiting"
-        exit 0
 else
         echo "dockeruser is set."
 fi
 if [ -z ${dockerpass} ] || [ ${dockerpass} = "" ]; then
         echo "Variable $dockerpass_varname not set in credentials file."
-        echo "Exiting"
-        exit 0
 else
         echo "dockerpass is set."
 fi
 if [ -z ${gittoken} ] || [ ${gittoken} == "" ]; then
 	echo "Variable $gittoken_varname not set in credentials file."
-	echo "Exiting"
-	exit 0
 else
 	echo "gittoken is set."
 fi
 
 /usr/bin/git config --system color.ui true
-/usr/bin/git config --system user.name "$gituser"
-/usr/bin/git config --system user.email "$gitmail"
 /usr/bin/git config --global init.defaultBranch main
 /usr/bin/dircolors -p > ~/.dircolors
 echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd' >> /etc/bash.bashrc
@@ -99,6 +92,7 @@ echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd' >> /e
 /usr/bin/ln -s /gitpush /usr/bin/gitpush 2>&1
 /usr/bin/ln -s /dockerpush /usr/bin/dockerpush 2>&1
 /usr/bin/ln -s /push /usr/bin/push 2>&1
+/usr/bin/ln -s /awspush /usr/bin/awspush
 /usr/bin/mkdir $basevol/.ssh 2>/dev/null
 echo 'n' | /usr/bin/ssh-keygen -t ed25519 -C "$gitmail" -P "" -f $basevol/.ssh/id_ed25519 2>/dev/null 1>/dev/null
 echo ' '
