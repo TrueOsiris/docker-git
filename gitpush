@@ -1,5 +1,8 @@
 #!/bin/bash
 basedir=/mnt/repos
+greencolor='\033[0;32m'
+redcolor='\033[0;31m'
+nocolor='\033[0m'
 CF="$basedir/.credentials.txt"
 source "$CF"
 
@@ -38,22 +41,22 @@ else
 fi
 currentdir=${PWD##*/}
 echo "repository = $currentdir"
-echo ">git branch -r"
+echo "> ${greencolor}git branch -r${nocolor}"
 git branch -r
-echo ">git remote -v"
+echo "> ${greencolor}git remote -v${nocolor}"
 git remote -v
-echo ">git remote set-url origin \"https://$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git\""
+echo "> ${greencolor}git remote set-url origin \"https://$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git\"${nocolor}"
 git remote set-url origin "https://$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git"
-echo ">git remote show origin"
+echo "> ${greencolor}git remote show origin${nocolor}"
 git remote show origin
-echo ">git checkout $build"
+echo "> ${greencolor}git checkout $build${nocolor}"
 git checkout $build
-echo ">git status"
+echo "> ${greencolor}git status${nocolor}"
 git status
-echo ">git add *"
+echo "> ${greencolor}git add *${nocolor}"
 git add * 2>/dev/null
-echo ">git commit -a -m \"$comment\""
+echo "> ${greencolor}git commit -a -m \"$comment\"${nocolor}"
 git commit -a -m "$comment"
-echo ">git push -u origin $build"
+echo "> ${greencolor}git push -u origin $build${nocolor}"
 git push -u origin $build
 
