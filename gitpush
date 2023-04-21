@@ -41,22 +41,22 @@ else
 fi
 currentdir=${PWD##*/}
 echo "repository = $currentdir"
-echo "> ${greencolor}git branch -r${nocolor}"
+echo -e "> ${greencolor}git branch -r${nocolor}"
 git branch -r
-echo "> ${greencolor}git remote -v${nocolor}"
+echo -e "> ${greencolor}git remote -v${nocolor}"
 git remote -v
-echo "> ${greencolor}git remote set-url origin \"https://$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git\"${nocolor}"
+echo -e "> ${greencolor}git remote set-url origin \"https://$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git\"${nocolor}"
 git remote set-url origin "https://$GITUSER:$GITTOKEN@github.com/$GITREPOUSER/$currentdir.git"
-echo "> ${greencolor}git remote show origin${nocolor}"
+echo -e "> ${greencolor}git remote show origin${nocolor}"
 git remote show origin
-echo "> ${greencolor}git checkout $build${nocolor}"
+echo -e "> ${greencolor}git checkout $build${nocolor}"
 git checkout $build
-echo "> ${greencolor}git status${nocolor}"
+echo -e "> ${greencolor}git status${nocolor}"
 git status
-echo "> ${greencolor}git add *${nocolor}"
+echo -e "> ${greencolor}git add *${nocolor}"
 git add * 2>/dev/null
-echo "> ${greencolor}git commit -a -m \"$comment\"${nocolor}"
+echo -e "> ${greencolor}git commit -a -m \"$comment\"${nocolor}"
 git commit -a -m "$comment"
-echo "> ${greencolor}git push -u origin $build${nocolor}"
+echo -e "> ${greencolor}git push -u origin $build${nocolor}"
 git push -u origin $build
 
