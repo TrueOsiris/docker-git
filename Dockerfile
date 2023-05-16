@@ -24,12 +24,17 @@ RUN apt install -y 	vim \
 			logrotate \
 			docker-ce \
 			awscli \
-    && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt clean
+    && rm -rf /var/lib/apt/lists/* \
+    && apt clean
 RUN wget http://launchpadlibrarian.net/571591066/amazon-ecr-credential-helper_0.5.0-1build1_amd64.deb \
     && dpkg -i amazon-ecr-credential-helper_0.5.0-1build1_amd64.deb \
     && rm amazon-ecr-credential-helper_0.5.0-1build1_amd64.deb
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
+    && apt-get update \
+    && apt-get install -y git-lfs \
+    && apt-get autoremove -y && apt-get autoclean -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt clean
 
 ENV TZ=Europe/Brussels
 
